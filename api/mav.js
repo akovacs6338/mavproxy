@@ -25,11 +25,14 @@ export default async function handler(req, res) {
 
     const data = await mavResponse.text();
 
+    // 🔥 EZ HIÁNYZOTT EDDIG
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader("Content-Type", "application/json");
-    res.send(data);
+
+    return res.status(200).send(data);
 
   } catch (err) {
-    res.status(500).json({ error: "Proxy error", details: err.toString() });
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    return res.status(500).json({ error: "Proxy error", details: err.toString() });
   }
 }
